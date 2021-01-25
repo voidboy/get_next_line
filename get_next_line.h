@@ -6,7 +6,7 @@
 /*   By: aclerac <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 11:00:22 by aclerac           #+#    #+#             */
-/*   Updated: 2021/01/24 15:17:56 by aclerac          ###   ########.fr       */
+/*   Updated: 2021/01/25 11:19:36 by aclerac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include <unistd.h>
 
 typedef struct	s_library {
-	char	buffer[BUFFER_SIZE];
-	int		cursor;
+	char			buffer[BUFFER_SIZE];
+	unsigned int	cursor;
 }				t_library;
 
 int				get_next_line(int fd, char **line);
-char			*ft_strncpy(char *dest, const char *src, unsigned int n);
+void			*ft_memset(void *b, int c, size_t len);
+char			*ft_strncpy(char *dest, const char *src, size_t n);
 #endif

@@ -6,15 +6,13 @@
 /*   By: aclerac <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 11:00:08 by aclerac           #+#    #+#             */
-/*   Updated: 2021/01/24 16:29:51 by aclerac          ###   ########.fr       */
+/*   Updated: 2021/01/25 14:12:01 by aclerac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
 #include "get_next_line.h"
 
-char	read_buffer(int fd)
+static char	read_buffer(int fd)
 {
 	ssize_t				read_size;
 	char				c;
@@ -25,9 +23,11 @@ char	read_buffer(int fd)
 	else
 	{
 		read_size = read(fd, tab[fd].buffer, BUFFER_SIZE);
+		if (read_size < BUFFER_SIZE)
+			tab[fd].buffer[read_size] = '\0';
 		if (read_size == 0 || read_size == -1)
 			c = (char)read_size;
-		else 
+		else
 			c = tab[fd].buffer[0];
 	}
 	tab[fd].cursor++;
@@ -36,11 +36,10 @@ char	read_buffer(int fd)
 	return (c);
 }
 
-
 int		get_next_line(int fd, char **line)
 {
-	ssize_t line_size;
-	ssize_t maxi_line;
+	size_t	line_size;
+	size_t	maxi_line;
 	char	*tmp_line;
 	char	c;
 
@@ -48,7 +47,7 @@ int		get_next_line(int fd, char **line)
 	maxi_line = BUFFER_SIZE;
 	if ((*line = malloc(sizeof(char) * BUFFER_SIZE + 1)) == NULL)
 		return (-1);
-	while (((c = read_buffer(fd)) != '\n')  && (c > 0))
+	while (((c = read_buffer(fd)) != '\n') && (c > 0))
 	{
 		(*line)[line_size++] = c;
 		if (line_size == maxi_line)
@@ -65,25 +64,4 @@ int		get_next_line(int fd, char **line)
 	if (c == 0 || c == -1)
 		return (c);
 	return (1);
-}
-
-
-int main(void)
-{
-	char *s;
-	int fd = open("foobar", O_RDONLY);
-	int df = open("barfoo", O_RDONLY);
-	get_next_line(fd, &s);
-	printf("==> |%s|\n", s);
-	free(s);
-	get_next_line(df, &s);
-	printf("==> |%s|\n", s);
-	free(s);
-	get_next_line(fd, &s);
-	printf("==> |%s|\n", s);
-	free(s);
-	get_next_line(df, &s);
-	printf("==> |%s|\n", s);
-	free(s);
-	return (0);
 }

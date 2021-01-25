@@ -6,13 +6,13 @@
 /*   By: aclerac <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 11:05:59 by aclerac           #+#    #+#             */
-/*   Updated: 2021/01/24 09:23:31 by aclerac          ###   ########.fr       */
+/*   Updated: 2021/01/25 14:41:37 by aclerac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strncpy(char *dest, const char *src, unsigned int n)
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
 	int i;
 

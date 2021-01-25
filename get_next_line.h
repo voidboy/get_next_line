@@ -6,7 +6,7 @@
 /*   By: aclerac <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 11:00:22 by aclerac           #+#    #+#             */
-/*   Updated: 2021/01/25 11:19:36 by aclerac          ###   ########.fr       */
+/*   Updated: 2021/01/25 15:46:47 by aclerac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ typedef struct	s_library {
 }				t_library;
 
 int				get_next_line(int fd, char **line);
-void			*ft_memset(void *b, int c, size_t len);
 char			*ft_strncpy(char *dest, const char *src, size_t n);
 #endif

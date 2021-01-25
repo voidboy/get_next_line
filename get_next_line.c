@@ -6,7 +6,7 @@
 /*   By: aclerac <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 11:00:08 by aclerac           #+#    #+#             */
-/*   Updated: 2021/01/25 14:12:01 by aclerac          ###   ########.fr       */
+/*   Updated: 2021/01/25 15:48:56 by aclerac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	read_buffer(int fd)
 	return (c);
 }
 
-int		get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	size_t	line_size;
 	size_t	maxi_line;
@@ -61,7 +61,5 @@ int		get_next_line(int fd, char **line)
 		}
 	}
 	(*line)[line_size] = '\0';
-	if (c == 0 || c == -1)
-		return (c);
-	return (1);
+	return ((c == 0 || c == -1) ? c : 1);
 }

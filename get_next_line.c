@@ -45,7 +45,7 @@ int			get_next_line(int fd, char **line)
 
 	line_size = 0;
 	maxi_line = BUFFER_SIZE;
-	if (fd < 0 || !BUFFER_SIZE || !line ||
+	if (fd < 0 || BUFFER_SIZE <= 0 || !line ||
 	(*line = malloc(sizeof(char) * BUFFER_SIZE + 1)) == NULL)
 		return (-1);
 	while (((c = read_buffer(fd)) != '\n') && (c > 0))
